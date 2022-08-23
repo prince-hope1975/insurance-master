@@ -251,7 +251,7 @@ const Card = ({
         <hr></hr>
         <p>{info3}</p>
       </div>
-      {!(storage.includes(index)) ? (
+      {!(storage?.includes(index)) ? (
         <div className="cards-btn" onClick={() => handleStartPlan(price)}>
           Start Plan
         </div>
