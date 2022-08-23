@@ -55,7 +55,7 @@ class Dapp extends React.Component {
           </p>
         </div>
         <div className="plan-cards">
-          <div className="first-card">
+          <div className="card">
             <h1>Regular</h1>
             <p className="cash">$40</p>
             <div className="objectives">
@@ -69,7 +69,7 @@ class Dapp extends React.Component {
             </div>
             <div className="cards-btn">Start Plan</div>
           </div>
-          <div className="second-card">
+          <div className="card">
             <h1>Gold</h1>
             <p className="cash">$80.99</p>
             <div className="objectives">
@@ -83,7 +83,7 @@ class Dapp extends React.Component {
             </div>
             <div className="cards-btn">Start Plan</div>
           </div>
-          <div className="third-card">
+          <div className="card">
             <h1>Platinum</h1>
             <p className="cash">$120</p>
             <div className="objectives">

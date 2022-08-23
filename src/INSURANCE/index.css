@@ -78,7 +78,7 @@
   color: #000;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 700px) {
   .MobileNavigation {
     display: none;
   }
@@ -201,28 +201,44 @@
   gap: 5rem;
   padding: 2rem;
 }
+.plan-cards div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .plan-cards h1 {
   font-size: clamp(1rem, 3vw, 1.5rem);
 }
-.first-card {
+
+.card {
   background-color: #fff;
   color: #000;
   border-radius: 2rem;
   box-shadow: rgba(0, 0, 0, 0.78);
 }
-.first-card h1 {
-  color: #000;
+.card hr {
+  width: 100%;
+}
+.card h1 {
+  color: white;
+  text-transform: uppercase;
   text-align: center;
   font-weight: bold;
   background-color: #607eaa;
+  width: 92%;
+  margin: auto;
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+  justify-content: center;
 }
-.first-card .cash {
+.card .cash {
   color: #000;
   text-align: center;
   font-weight: bold;
   font-size: 5rem;
 }
-.first-card .objectives {
+.card .objectives {
   color: #000;
   text-align: center;
   padding: 1rem;
@@ -232,7 +248,7 @@
 .cards-btn {
   background-color: #607eaa;
   text-align: center;
-  width: 30%;
+  width: 40%;
   color: white;
   padding: 1rem;
   font-size: 20px;
@@ -241,55 +257,6 @@
   display: flex;
   margin: auto;
   margin: 1rem;
-}
-.second-card {
-  background-color: #fff;
-  color: #000;
-  border-radius: 2rem;
-  box-shadow: rgba(0, 0, 0, 0.78);
-}
-.second-card h1 {
-  color: #000;
-  text-align: center;
-  font-weight: bold;
-  background-color: #607eaa;
-}
-.second-card .cash {
-  color: #000;
-  text-align: center;
-  font-weight: bold;
-  font-size: 5rem;
-}
-.second-card .objectives {
-  color: #000;
-  text-align: center;
-  padding: 1rem;
-  font-size: 20px;
-}
-
-.third-card {
-  background-color: #fff;
-  color: #000;
-  border-radius: 2rem;
-  box-shadow: rgba(0, 0, 0, 0.78);
-}
-.third-card h1 {
-  color: #000;
-  text-align: center;
-  font-weight: bold;
-  background-color: #607eaa;
-}
-.third-card .cash {
-  color: #000;
-  text-align: center;
-  font-weight: bold;
-  font-size: 5rem;
-}
-.third-card .objectives {
-  color: #000;
-  text-align: center;
-  padding: 1rem;
-  font-size: 20px;
 }
 
 .name-input input {
