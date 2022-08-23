@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 // import './index.css'
 // import Dapp from './INSURANCE'
-
+import {AppProvider} from "./context";
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <AppProvider>
+      <App />
+    </AppProvider>
     {/* <Dapp /> */}
   </React.StrictMode>
 )

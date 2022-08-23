@@ -9,7 +9,35 @@
   font-family: "poppins";
   max-width: 990%;
 }
-
+.modal_bg {
+  position: fixed;
+  inset: 0;
+  background: hsl(0, 0%, 0%, 0.4);
+  display: grid;
+  place-content: center;
+  z-index: 1;
+}
+.modal_bg .modal {
+  background: white;
+  width: min(50vw, 500px);
+  text-align: center;
+  border-radius: 5px;
+  padding: 2rem 1rem;
+  aspect-ratio: 1;
+  position: relative;
+}
+.modal .connect{
+  background: red;
+  margin-inline: auto;
+}
+.x {
+  position: absolute;
+  right: 2rem;
+  top: 1rem;
+  color: red;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
 .insure {
   color: #607eaa;
 }
@@ -42,6 +70,26 @@
   position: absolute;
   right: 5%;
 }
+.connect {
+  background: #607eaa;
+  max-width: 50%;
+  text-align: center;
+  font-size: 1.3rem;
+  color: white;
+  cursor: pointer;
+  margin-top: 1rem;
+  padding: 0.5rem 0.7rem;
+  box-shadow: 2px 2px 2px #333;
+  border-radius: 5px;
+  transition: box-shadow 300ms ease-in-out;
+  transition: transform 300ms ease-in-out;
+}
+
+.connet:hover {
+  box-shadow: 3px 3px 2px #333;
+  transform: translateY(-0.2rem);
+}
+
 .nav {
   display: flex;
   flex-direction: column;
@@ -257,6 +305,7 @@
   display: flex;
   margin: auto;
   margin: 1rem;
+  cursor: pointer;
 }
 
 .name-input input {
