@@ -1,14 +1,12 @@
-import React, {
-  PropsWithChildren,
-  useContext,
-  useState,
-} from "react";
+import React, { PropsWithChildren, useContext, useState } from "react";
 import {
   loadStdlib,
   ALGO_WalletConnect as WalletConnect,
 } from "@reach-sh/stdlib";
 // @ts-ignore
 import * as backend from "./reach/build/index.main.mjs";
+
+const ctcInfo = { _hex: "0x065726c3", _isBigNumber: true };
 
 // @ts-ignore
 const reach = loadStdlib("ALGO");
@@ -19,7 +17,7 @@ reach.setWalletFallback(
     WalletConnect,
   })
 );
-export type modalType = "launch" | "message" | "subscribe" | "none";
+export type modalType = "launch" | "message" | "Subscribe" | "none";
 export const useDefaultContext = () => useContext(AppContext);
 
 const AppContext = React.createContext(
@@ -50,7 +48,7 @@ const AppContext = React.createContext(
     isConnected: boolean;
     setIsConnected: React.Dispatch<React.SetStateAction<boolean>>;
     Api: {
-      subscribe: (somn: number) => Promise<any>;
+      Subscribe: (somn: number) => Promise<any>;
       Submit_claim: (claim: string, funds: number) => Promise<any>;
       getBalance: () => Promise<number | any>;
       displayBalance: () => Promise<void>;
@@ -60,6 +58,8 @@ const AppContext = React.createContext(
     DisconnectWallet: () => void;
   }
 );
+let i = 0;
+
 export const AppProvider = ({ children }: PropsWithChildren) => {
   const [isConnected, setIsConnected] = useState(false);
   const [contractInfo, setContractInfo] = useState("" as string);
@@ -71,7 +71,7 @@ export const AppProvider = ({ children }: PropsWithChildren) => {
   const [isOpen, setOpen] = useState(false);
   const [Api, setApi] = useState(
     {} as {
-      subscribe: (somn: number) => Promise<any>;
+      Subscribe: (somn: number) => Promise<any>;
       Submit_claim: (claim: string, funds: number) => Promise<any>;
       getBalance: () => Promise<number | any>;
       displayBalance: () => Promise<void>;
@@ -117,17 +117,16 @@ export const AppProvider = ({ children }: PropsWithChildren) => {
 
   const Insurer = async () => {
     const acc = await reach.getDefaultAccount();
-    const ctc = () =>
-      acc.contract(
-        backend,
-        // @ts-ignore
-        reach.bigNumberToNumber(contractInfo)
-      );
+    const ctc = acc.contract(
+      backend,
+      // @ts-ignore
+      reach.bigNumberToNumber(ctcInfo)
+    );
 
-    const subscribe = async (howMany: number) => {
+    const Subscribe = async (howMany: number) => {
       try {
         const pay = reach.parseCurrency(howMany);
-        const res = await ctc().apis.Subscribers.subscribe(pay);
+        const res = await ctc.apis.Subscribers.Subscribe(pay);
         console.log(res);
         return res;
       } catch (error) {
@@ -139,7 +138,7 @@ export const AppProvider = ({ children }: PropsWithChildren) => {
     const Submit_claim = async (claim: string, funds: number) => {
       try {
         const rf = reach.parseCurrency(funds);
-        const res = await ctc().apis.Subscribers.Submit_claim(claim, rf);
+        const res = await ctc.apis.Subscribers.Submit_claim(claim, rf);
         console.log(res);
         return res;
       } catch (error) {
@@ -158,66 +157,71 @@ export const AppProvider = ({ children }: PropsWithChildren) => {
     };
 
     return {
-      subscribe,
+      Subscribe,
       Submit_claim,
       getBalance,
       displayBalance,
       acc,
     };
   };
+  // const deploy = async (acc: any) => {
+  //   const ctcInsurance =
+  //     (await acc?.contract(backend)) ?? (await wallet?.contract(backend));
+  //   Promise.all([
+  //     ctcInsurance.p.Insurance_company({
+  //       Sub_amt: async () => {
+  //         console.log(`The minimum amount for subscription is ${1}`);
+  //         return 1;
+  //       },
+  //       Check_claim: async (clm: string) => {
+  //         console.log(
+  //           `The insurance company saw claim : ${clm}\nAwaiting decision................`
+  //         );
 
-  const deploy = async (acc:any) => {
-    const ctcInsurance = await acc?.contract(backend) ?? await wallet?.contract(backend);
-    await Promise.all([
-      ctcInsurance.p.Insurance_company({
-        Sub_amt: async () => {
-          console.log(`The minimum amount for subscription is ${1}`);
-          return 1;
-        },
-        Check_claim: async (clm: string) => {
-          console.log(
-            `The insurance company saw claim : ${clm}\nAwaiting decision................`
-          );
+  //         if (true) {
+  //           console.log(`Your claim was approved`);
+  //           return true;
+  //         } else {
+  //           console.log(`Your claim was denied`);
+  //           return false;
+  //         }
+  //       },
+  //       Check_pay: async (sub_pay: number) => {
+  //         console.log(
+  //           // @ts-ignore
+  //           `seen cash :  ${reach.formatCurrency(sub_pay)} ${
+  //             reach.standardUnit
+  //           }`
+  //         );
 
-          if (true) {
-            console.log(`Your claim was approved`);
-            return true;
-          } else {
-            console.log(`Your claim was denied`);
-            return false;
-          }
-        },
-        Check_pay: async (sub_pay: number) => {
-          console.log(
-            // @ts-ignore
-            `seen cash :  ${reach.formatCurrency(sub_pay,)} ${
-              reach.standardUnit
-            }`
-          );
+  //         if (sub_pay >= Number(reach.parseCurrency(1))) {
+  //           console.log(`Your pay to the dapp was approved`);
+  //           return true;
+  //         } else {
+  //           console.log(`Your pay was declined\nAwait your pay refund`);
+  //           return false;
+  //         }
+  //       },
+  //       deny_claim: async () => {
+  //         console.log(`sorry your claim was denied\n Due to suspected fraud`);
+  //       },
+  //     }),
+  //   ]);
+  //   await createAsyncTimeout(90);
+  //   setContractInfo(await ctcInsurance.getInfo());
+  //   console.log(await ctcInsurance.getInfo());
+  // };
 
-          if (sub_pay >= Number(reach.parseCurrency(1))) {
-            console.log(`Your pay to the dapp was approved`);
-            return true;
-          } else {
-            console.log(`Your pay was declined\nAwait your pay refund`);
-            return false;
-          }
-        },
-        deny_claim: async () => {
-          console.log(`sorry your claim was denied\n Due to suspected fraud`);
-        },
-      }),
-    ]);
-  };
+  // React.useEffect(() => {
+  //   (async () => {
+  //     if (i < 1) {
+  //       const acct = await connectWallet();
 
-  // useEffect(()=>{
-  //   (async()=>{
-  //   const acct=   await connectWallet();
- 
-  //      await  deploy(acct)
-      
-  //   })()
-  // },[])
+  //       await deploy(acct);
+  //       i++;
+  //     }
+  //   })();
+  // }, []);
   return (
     <AppContext.Provider
       value={{

@@ -186,7 +186,10 @@ const Card = ({
   const handleStartPlan = async (fund) => {
     try {
       if (isConnected) {
-        await Api.Submit_claim(fund);
+        await Api.Subscribe(fund);
+        displayMessage(true, "You just subscribed")
+        const db = fetchLocalStorage()
+        setLoaclStorage([...db, index])
       } else {
         displayMessage(
           true,
