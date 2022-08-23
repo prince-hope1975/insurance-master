@@ -1,0 +1,324 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Courier New", Courier, monospace;
+}
+.container {
+  background-color: #f9f5eb;
+  color: #000;
+  font-family: "poppins";
+  max-width: 990%;
+}
+
+.insure {
+  color: #607eaa;
+}
+
+.Navbar h1 {
+  position: absolute;
+  padding: 1rem;
+  top: 10px;
+}
+.Navigation .nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Navigation {
+  display: none;
+}
+.MobileNavigation {
+  display: flex;
+  align-items: center;
+  min-height: 4rem;
+  position: relative;
+}
+.MobileNavigation .nav {
+  top: 100%;
+}
+.MobileNavigation .menu {
+  position: absolute;
+  right: 5%;
+}
+.nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  list-style: none;
+  gap: 20px;
+  right: 0%;
+  width: 100%;
+  align-items: center;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.739);
+  opacity: 1;
+  color: #fff;
+  font-size: 22px;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+}
+.nav li {
+  display: inline-block;
+  margin: 20px;
+}
+.nav li a {
+  text-decoration: none;
+  color: #fff;
+}
+.nav :hover {
+  color: #607eaa;
+}
+.menu {
+  position: absolute;
+  top: 25px;
+  size: 30px;
+  color: #000;
+}
+
+@media (min-width: 500px) {
+  .MobileNavigation {
+    display: none;
+  }
+
+  .Navigation {
+    display: flex;
+  }
+  .Navigation .nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .Navbar h1 {
+    position: relative;
+  }
+  /* .nav {
+   
+  } */
+
+  .nav {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1px;
+    width: 100%;
+    align-items: center;
+    background-color: #f9f5eb;
+    font-size: clamp(0.7rem, calc(2vw + 1px), 1rem);
+    /* background: blue; */
+  }
+  .nav li {
+    display: flex;
+    /* background: red; */
+  }
+  .nav li a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  .about {
+    display: flex;
+    flex-direction: row;
+  }
+  .about img {
+    max-width: 50%;
+  }
+  .plan-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+    padding: 2rem;
+  }
+
+  .name-input input {
+    margin-top: -100%;
+    padding-top: 20rem;
+  }
+}
+
+.home,
+.about {
+  padding: 2rem;
+  padding-top: 15%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+.home img {
+  max-width: 100%;
+}
+.home h1 {
+  color: #1c3879;
+  text-align: center;
+}
+.home p {
+  font-size: 18px;
+  text-align: center;
+  margin: 3%;
+}
+
+.about {
+  padding: 2rem;
+  padding-top: 15%;
+}
+.about div {
+  display: grid;
+  place-content: center;
+}
+.about img {
+  max-width: 100%;
+}
+.about h1 {
+  color: #1c3879;
+  text-align: center;
+}
+.about p {
+  font-size: 18px;
+  text-align: center;
+  margin: 3%;
+}
+.services {
+  padding: 2rem;
+  padding-top: 15%;
+}
+.services h1 {
+  color: #1c3879;
+  text-align: center;
+  text-decoration: underline;
+}
+.services p {
+  font-size: 18px;
+  text-align: center;
+  margin: 3%;
+}
+
+.plan-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 5rem;
+  padding: 2rem;
+}
+.plan-cards h1 {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+}
+.first-card {
+  background-color: #fff;
+  color: #000;
+  border-radius: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.78);
+}
+.first-card h1 {
+  color: #000;
+  text-align: center;
+  font-weight: bold;
+  background-color: #607eaa;
+}
+.first-card .cash {
+  color: #000;
+  text-align: center;
+  font-weight: bold;
+  font-size: 5rem;
+}
+.first-card .objectives {
+  color: #000;
+  text-align: center;
+  padding: 1rem;
+  font-size: 20px;
+}
+
+.cards-btn {
+  background-color: #607eaa;
+  text-align: center;
+  width: 30%;
+  color: white;
+  padding: 1rem;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  display: flex;
+  margin: auto;
+  margin: 1rem;
+}
+.second-card {
+  background-color: #fff;
+  color: #000;
+  border-radius: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.78);
+}
+.second-card h1 {
+  color: #000;
+  text-align: center;
+  font-weight: bold;
+  background-color: #607eaa;
+}
+.second-card .cash {
+  color: #000;
+  text-align: center;
+  font-weight: bold;
+  font-size: 5rem;
+}
+.second-card .objectives {
+  color: #000;
+  text-align: center;
+  padding: 1rem;
+  font-size: 20px;
+}
+
+.third-card {
+  background-color: #fff;
+  color: #000;
+  border-radius: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.78);
+}
+.third-card h1 {
+  color: #000;
+  text-align: center;
+  font-weight: bold;
+  background-color: #607eaa;
+}
+.third-card .cash {
+  color: #000;
+  text-align: center;
+  font-weight: bold;
+  font-size: 5rem;
+}
+.third-card .objectives {
+  color: #000;
+  text-align: center;
+  padding: 1rem;
+  font-size: 20px;
+}
+
+.name-input input {
+  margin: 2rem;
+  width: 80%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+.email-input input {
+  margin: 2rem;
+  width: 80%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+.message-input input {
+  margin: 2rem;
+  width: 80%;
+  padding: 100px 8px;
+  padding-top: 10px;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+.email-btn {
+  background-color: #607eaa;
+  padding: 1rem;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  margin: 1rem;
+}
