@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 // import './App.css'
-import Dapp from './INSURANCE/'; 
+// @ts-ignore
+import Dapp from './INSURANCE'; 
 
 function App() {
   const [count, setCount] = useState(0)
