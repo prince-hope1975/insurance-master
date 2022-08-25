@@ -6,15 +6,20 @@ import "./index.css";
 import homepic from "./homepic.svg";
 import aboutpic from "./aboutpic.svg";
 
-  export function fetchLocalStorage() {
-    const str = window?.localStorage?.getItem("subscribed");
-    const store = JSON.parse(str);
-    return store;
+export function fetchLocalStorage() {
+  const str = window?.localStorage?.getItem("subscribed");
+  const store = JSON.parse(str);
+  if (!str || str?.length == 0) {
+    return [];
+  } else {
+    console.log({store})
+    return [...store];
   }
-  export function setLoaclStorage(str = []) {
-    const storrageItem = str.length <= 0 ? str : fetchLocalStorage();
-    window.localStorage.setItem("subscribed", JSON.stringify(storrageItem));
-  }
+}
+export function setLoaclStorage(str = []) {
+  const storrageItem = str.length <= 0 ? str : fetchLocalStorage();
+  window.localStorage.setItem("subscribed", JSON.stringify(storrageItem));
+}
 
 import { useDefaultContext } from "../context";
 
@@ -43,9 +48,9 @@ const Dapp = () => {
 
   React.useEffect(() => {
     // setLoaclStorage()
-    const str =fetchLocalStorage();
-     setStorage(str);
-     console.log(str);
+    const str = fetchLocalStorage();
+    setStorage(str ?? []);
+    console.log(str);
   }, []);
   const ConnectWalletButton = () => {
     if (!isConnected) {
@@ -186,10 +191,11 @@ const Card = ({
   const handleStartPlan = async (fund) => {
     try {
       if (isConnected) {
+        displayMessage(true, "Beginning Subscription");
         await Api.Subscribe(fund);
-        displayMessage(true, "You just subscribed")
-        const db = fetchLocalStorage()
-        setLoaclStorage([...db, index])
+        displayMessage(true, "You just subscribed");
+        const db = fetchLocalStorage();
+        setLoaclStorage([...db, index]);
       } else {
         displayMessage(
           true,
@@ -201,12 +207,18 @@ const Card = ({
         await createAsyncTimeout(6);
         displayMessage(false);
       }
-    } catch (error) {}
+    } catch (error) {
+      displayMessage(true, "An error occured");
+      await createAsyncTimeout(2);
+      displayMessage(false);
+    }
   };
   const handleClaimPlan = async (claim, fund) => {
     try {
       if (isConnected) {
+        displayMessage(true, "Starting Claim");
         await Api.Submit_claim(claim, fund);
+        displayMessage(true, "Successfully claimed");
       } else {
         displayMessage(
           true,
@@ -251,7 +263,7 @@ const Card = ({
         <hr></hr>
         <p>{info3}</p>
       </div>
-      {!(storage?.includes(index)) ? (
+      {!storage?.includes(index) ? (
         <div className="cards-btn" onClick={() => handleStartPlan(price)}>
           Start Plan
         </div>

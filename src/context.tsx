@@ -4,7 +4,7 @@ import {
   ALGO_WalletConnect as WalletConnect,
 } from "@reach-sh/stdlib";
 // @ts-ignore
-import * as backend from "./reach/build/index.main.mjs";
+import * as backend from "./reachbuild/index.main.mjs";
 
 const ctcInfo = { _hex: "0x065726c3", _isBigNumber: true };
 
